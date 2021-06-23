@@ -1,0 +1,55 @@
+const Koa = require("koa");
+
+<% if (middleware.router) { %>
+const Router = require("koa-router");
+  <% } %>
+
+<% if (middleware.static) { %>
+const serve = require("koa-static");
+  <% } %>
+
+<% if (middleware.views) { %>
+const views = require("koa-views");
+  <% } %>
+
+
+<% if (middleware.body) { %>
+const body = require("koa-body");
+  <% } %>
+
+const app = new Koa();
+
+
+<% if (middleware.static) { %>
+app.use(serve(__dirname + "/static"));
+  <% } %>
+
+<% if (middleware.views) { %>
+app.use(
+  views(__dirname + "/views", {
+    extension: "pug",
+  })
+);
+  <% } %>
+
+<% if (middleware.body) { %>
+app.use(
+  body({
+    multipart: true,
+  })
+);
+  <% } %>
+
+
+<% if (middleware.router) { %>
+const router = new Router();
+router.get("/", (ctx) => {
+  ctx.body = "hello hei";
+});
+app.use(router.routes());
+  <% } %>
+
+
+app.listen(<%= port %>, () => {
+  console.log("open server localhost:<%= port %>");
+});

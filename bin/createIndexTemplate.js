@@ -5,8 +5,6 @@ import { fileURLToPath } from "url";
 import prettier from "prettier";
 
 export default (config) => {
-  // nodejs esm
-  // __dirname
   const __dirname = fileURLToPath(import.meta.url);
   const templateCode = fs.readFileSync(
     path.resolve(__dirname, "../template/index.ejs")

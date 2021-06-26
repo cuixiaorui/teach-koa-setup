@@ -19,6 +19,7 @@ npm link
 - chalk
 - ejs
 - execa
+- inquirer
 
 ## 学习
 可以去 [b站](https://www.bilibili.com/video/BV1jK4y197Ne) 观看完整的实现过程
